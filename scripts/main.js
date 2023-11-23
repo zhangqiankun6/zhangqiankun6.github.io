@@ -23,7 +23,7 @@ function setUserName() {
         setUserName()
     }else{
         localStorage.setItem("name", myName);
-        myHeading.textContent = "Mozilla 酷毙了，" + myName;
+        myHeading.textContent = "欢迎，" + myName;
       }
     }
    
@@ -31,12 +31,26 @@ function setUserName() {
     setUserName();
   } else {
     let storedName = localStorage.getItem("name");
-    myHeading.textContent = "Mozilla 酷毙了，" + storedName;
+    myHeading.textContent = "欢迎，" + storedName;
   }
   myButton.onclick = function () {
-    setUserName();
+    gaEvent();
   };
-
+   function gaEvent() {
+        if (isMobile()) {
+            console.log('这是移动端');
+            alert('这是移动端')
+            myImage.setAttribute("src", "images/mei2.jpg");
+        } else {
+            console.log('这不是移动端');
+            myImage.setAttribute("src", "images/mei.jpg");
+        }   
+        // console.log('ga4');
+        // window.hellowdSdk.gaEvent("order", { 'app_name': 'myAppName' })
+    }
+    function isMobile() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
 
 let myImage = document.querySelector("img");
 
